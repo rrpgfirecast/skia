@@ -239,7 +239,7 @@ def gn_gen(script_executable, target, is_debug, ndk, clang_win, win_vc, win_sdk,
             vswhere = find_executable(['vswhere'], environment_name='VSWHERE_EXECUTABLE')
             if vswhere is None:
                 download_latest_from_github('microsoft', 'vswhere', 'vswhere.exe', BIN_DIR)
-                vswhere = 'vswhere'
+                vswhere = os.path.join(BIN_DIR, 'vswhere.exe')
             result, output = call_executable([vswhere, '-products', '*', '-requires',
                                               'Microsoft.VisualStudio.Component.VC.Tools.x86.x64', '-version',
                                               '[16.0,18.0)', '-latest', '-property', 'installationPath'])
